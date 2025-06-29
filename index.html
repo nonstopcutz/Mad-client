@@ -1,1 +1,56 @@
-<!-- Placeholder: MAD Client FULL version will be embedded here with Eaglercraft 1.8.8 engine -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MAD Client</title>
+  <link rel="icon" href="https://i.imgur.com/Q56sYMN.png" type="image/png">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: #000;
+    }
+    canvas { display: block; margin: 0 auto; background: #111; }
+    #hud {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: red;
+      font-family: monospace;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="854" height="480"></canvas>
+  <div id="hud">CPS: 0 | FPS: 0</div>
+  <script>
+    let cps = 0, fps = 0, clicks = 0;
+    let lastFrame = performance.now();
+
+    // FPS simulation
+    function trackFPS() {
+      const now = performance.now();
+      fps = Math.round(1000 / (now - lastFrame));
+      lastFrame = now;
+      requestAnimationFrame(trackFPS);
+    }
+    trackFPS();
+
+    // Mouse click tracking
+    document.addEventListener("mousedown", () => clicks++);
+
+    // CPS + FPS updater
+    setInterval(() => {
+      document.getElementById("hud").textContent = `CPS: ${clicks} | FPS: ${fps}`;
+      clicks = 0;
+    }, 1000);
+
+    // Show loading text
+    const ctx = document.getElementById("gameCanvas").getContext("2d");
+    ctx.fillStyle = "#f00";
+    ctx.font = "20px monospace";
+    ctx.fillText("Loading MAD Client...", 280, 240);
+  </script>
+</body>
+</html>
