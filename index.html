@@ -1,34 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>MAD Client</title>
-  <link rel="icon" href="https://i.imgur.com/Q56sYMN.png" type="image/png">
+  <link rel="icon" href="https://i.imgur.com/0eKNRsC.png" />
   <style>
     html, body {
       margin: 0;
-      height: 100%;
       background: #000;
+      overflow: hidden;
     }
-    canvas { display: block; margin: 0 auto; background: #111; }
+    canvas {
+      display: block;
+      margin: auto;
+      background: #111;
+    }
     #hud {
       position: absolute;
       top: 10px;
       left: 10px;
       color: red;
       font-family: monospace;
-      font-size: 16px;
+      font-size: 14px;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
   <canvas id="gameCanvas" width="854" height="480"></canvas>
   <div id="hud">CPS: 0 | FPS: 0</div>
+
   <script>
+    // FPS/CPS tracking
     let cps = 0, fps = 0, clicks = 0;
     let lastFrame = performance.now();
 
-    // FPS simulation
     function trackFPS() {
       const now = performance.now();
       fps = Math.round(1000 / (now - lastFrame));
@@ -37,20 +43,20 @@
     }
     trackFPS();
 
-    // Mouse click tracking
     document.addEventListener("mousedown", () => clicks++);
 
-    // CPS + FPS updater
     setInterval(() => {
       document.getElementById("hud").textContent = `CPS: ${clicks} | FPS: ${fps}`;
       clicks = 0;
     }, 1000);
-
-    // Show loading text
-    const ctx = document.getElementById("gameCanvas").getContext("2d");
-    ctx.fillStyle = "#f00";
-    ctx.font = "20px monospace";
-    ctx.fillText("Loading MAD Client...", 280, 240);
   </script>
-</body>
-</html>
+
+  <!-- === Eaglercraft Engine (Cheats Enabled) === -->
+  <script>
+    // Placeholder for client spoofer + cheat engine
+    // This would normally be the real compiled Eaglercraft code like `classes.js` or similar
+    const ctx = document.getElementById("gameCanvas").getContext("2d");
+    ctx.fillStyle = "red";
+    ctx.font = "20px monospace";
+    ctx.fillText("MAD Client 1.8.8 (Cheats Enabled)", 200, 230);
+    ctx.fillText("AutoClicker: 40–55 CPS | FastPlace: 67–87", 180, 26
